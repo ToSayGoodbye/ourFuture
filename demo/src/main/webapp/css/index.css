@@ -1,0 +1,64 @@
+*{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/*
+.header{
+    height:80px;
+    width: 100%;
+    background: #cccccc;
+    position: relative;
+}
+.header .nav{
+    color: #ffffff;
+    text-decoration:none;
+    text-shadow:1px 1px 1px black;
+}
+.header #nav1{
+    position: absolute;
+    left: 20px;
+    top: 26px;
+}
+.header #nav2{
+    position: absolute;
+    left: 60px;
+    top: 26px;
+}
+.header #nav3{
+    position: absolute;
+    left: 100px;
+    top: 26px;
+}
+.header #nav4{
+    position: absolute;
+    left: 140px;
+    top: 26px;
+}
+.header #nav5   {
+    position: absolute;
+    left: 180px;
+    top: 26px;
+}
+*/
+.leftMenu{
+    position: absolute;
+    left: 0;
+    top:58px;
+    width: 15%;
+    border: 1px solid #ccc;
+}
+.rightPanel{
+    position: absolute;
+    left: 15%;
+    top:58px;
+    width: 85%;
+}
+/*
+.rightPanelSecond{
+    position: absolute;
+    left: 15%;
+    top:309px;
+    width: 85%;
+}
+*/

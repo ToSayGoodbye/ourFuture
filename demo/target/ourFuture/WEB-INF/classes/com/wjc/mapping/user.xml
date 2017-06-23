@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjc.dao.IUserDao">   
+<!-- 查询列表 -->
+<select id="queryUsers" parameterType="java.util.HashMap" resultType="com.wjc.pojo.User"> 
+    SELECT id as uuid,username as name,identity_card as score FROM user_table LIMIT #{page},#{pagesize}
+</select>  
+
+<!-- 根据name查询用户 -->
+<select id="selectByName" parameterType="String" resultType="com.wjc.pojo.User"> 
+    SELECT id as uuid,username as name,identity_card as score FROM user_table where username = #{name}
+</select> 
+ 
+ <!-- 根据name查询用户 -->
+<select id="queryUsersCount" resultType="java.lang.Integer"> 
+   SELECT count(1) FROM user_table
+</select> 
+
+ <!-- 添加用户-->
+<select id="addUser" parameterType="com.wjc.pojo.User"> 
+    insert into user_table (username,identity_card) values (#{name},#{score})
+</select> 
+
+ <!-- 修改用户-->
+<select id="updateUser" parameterType="com.wjc.pojo.User"> 
+    update user_table set sex = '1' where name = #{name}
+</select>
+
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+ <!-- 添加图片信息-->
+<insert id="addPhoto" parameterType="java.util.HashMap"> 
+    insert into picture_table (picture_path,picture_information,picture_name,picture_type,comment,putin_date) values (#{picture_path},#{picture_information},#{picture_name},#{picture_type},#{comment},now())
+</insert> 
+
+<!-- 删除图片-->
+<delete id="deletePhoto" parameterType="java.util.HashMap"> 
+    delete from picture_table where id = #{id}
+</delete>
+
+<!-- 查询列表 -->
+<select id="queryPhotos" parameterType="java.util.HashMap" resultType="com.wjc.pojo.Photo"> 
+    SELECT * FROM picture_table
+     <where> 
+    	<if test="picture_name!=null and picture_name!='' ">  
+	        picture_name LIKE CONCAT(CONCAT('%', #{picture_name}),'%')  
+	    </if>
+	    <if test="picture_type!=null and picture_type!='' ">  
+	       and  picture_type=#{picture_type}
+	    </if>
+	  </where> 
+     order by id desc LIMIT #{page},#{pagesize} 
+</select>
+ <!-- 图片总数 -->
+<select id="queryPhotosCount" resultType="java.lang.Integer"> 
+    SELECT count(1) FROM picture_table
+    <where> 
+    	<if test="picture_name!=null and picture_name!='' ">  
+	        picture_name LIKE CONCAT(CONCAT('%', #{picture_name}),'%')  
+	    </if>
+	    <if test="picture_type!=null and picture_type!='' ">  
+	       and  picture_type=#{picture_type}
+	    </if>
+	</where> 
+</select>
+
+</mapper>
+

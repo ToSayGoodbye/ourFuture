@@ -1,0 +1,87 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+
+    <title>登录</title>
+
+    <meta name="Description" content="Login to access your TopVet account" />
+    <meta name="Keywords" content="" />
+
+
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 jquery 核心 JavaScript 文件 -->
+    <script src="./jquery/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="./bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/index.css"/>
+<!--
+    <link href="https://topvet.azureedge.net/styles.css?v=1.0.86.12101" rel="stylesheet" />-->
+
+   <!-- [if lt IE 9]>
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/respond.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    </script>
+</head>
+<body style="padding-top: 40px;padding-bottom: 40px;background-color: #eee;">
+
+
+
+<div class="container" style="padding-right:380px;padding-left:380px">
+
+      <form id="login" class="form-signin" action="./login.do" method="post">
+        <h2 class="form-signin-heading" style="text-align:center">图片管理系统</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" id="inputEmail" name="name" class="form-control" placeholder="请输入账号" required autofocus>
+        <br/>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword"  name="score"  class="form-control" placeholder="请输入密码" required>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" onclick="login()">登录</button>
+      </form>
+
+    </div>
+
+<script>
+function login(){
+	  var data = $('#login').serialize();
+	  $.ajax({
+			 type : "POST",	
+			 dataType: 'json',
+			 data:data,
+	    	 url : "./check.do",    			 
+	    	 success: function(data){
+	    		 if(data.msg=="用户名不正确"){
+	    			 alert(data.msg);
+	    		 }else if(data.msg=="密码不正确"){
+	    			 alert(data.msg);
+	    		 }else{
+	    			 document.forms[0].submit();
+	    		 }
+	            }
+	  });
+}
+</script>
+
+
+
+</body>
+</html>
